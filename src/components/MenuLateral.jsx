@@ -41,40 +41,53 @@ function MenuLateral({ aberto, setTela }) {
 
             <button 
               className="btn btn-sm btn-dark text-start"
+              onClick={() => setTela('funcionarios')}
+            >
+              Funcionários
+            </button>
+
+            <button 
+              className="btn btn-sm btn-dark text-start"
               onClick={() => setTela('safras')}
             >
               Safras
             </button>
+
             <button 
               className="btn btn-sm btn-dark text-start"
               onClick={() => setTela('unidadesMedidas')}
             >
               Unidades Medidas
             </button>
+
             <button 
               className="btn btn-sm btn-dark text-start"
               onClick={() => setTela('tipoInformacao')}
             >
               Tipo de Informação
             </button>
+
             <button 
               className="btn btn-sm btn-dark text-start"
               onClick={() => setTela('indicadores')}
             >
               Indicadores
             </button>
+
             <button 
               className="btn btn-sm btn-dark text-start"
               onClick={() => setTela('unidades')}
             >
               Unidades
             </button>
+
             <button 
               className="btn btn-sm btn-dark text-start"
               onClick={() => setTela('equipamentos')}
             >
               Equipamentos
             </button>
+
           </div>
         )}
       </div>
