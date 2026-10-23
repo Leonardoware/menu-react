@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-function MenuLateral({ aberto, setTela }) {
-  const [cadastroAberto, setCadastroAberto] = useState(false)
+function MenuLateral({ aberto, setTela, indicadores, selecionarIndicador }) {
+  const [cadastroAberto, setCadastroAberto] = useState(false);
 
   function alterarCadastro() {
-    setCadastroAberto(!cadastroAberto)
+    setCadastroAberto(!cadastroAberto);
   }
 
   return (
     <aside
       className={`menu-lateral bg-dark text-white ${
-        aberto ? 'aberto' : 'fechado'
+        aberto ? "aberto" : "fechado"
       }`}
     >
       <h2 className="h6 text-uppercase mb-3">Menu</h2>
@@ -18,7 +18,7 @@ function MenuLateral({ aberto, setTela }) {
       <div className="d-grid gap-2">
         <button
           className="btn btn-outline-light text-start"
-          onClick={() => setTela('inicio')}
+          onClick={() => setTela("inicio")}
         >
           Inicio
         </button>
@@ -27,72 +27,81 @@ function MenuLateral({ aberto, setTela }) {
           className="btn btn-outline-light text-start"
           onClick={alterarCadastro}
         >
-          Cadastro {cadastroAberto ? '▲' : '▼'}
+          Cadastro {cadastroAberto ? "▲" : "▼"}
         </button>
 
         {cadastroAberto && (
           <div className="ms-3 d-grid gap-2">
             <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('medicao')}
+              onClick={() => setTela("medicao")}
             >
               Medição
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('funcionarios')}
+              onClick={() => setTela("funcionarios")}
             >
               Funcionários
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('safras')}
+              onClick={() => setTela("safras")}
             >
               Safras
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('unidadesMedidas')}
+              onClick={() => setTela("unidadesMedidas")}
             >
               Unidades Medidas
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('tipoInformacao')}
+              onClick={() => setTela("tipoInformacao")}
             >
               Tipo de Informação
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('indicadores')}
+              onClick={() => setTela("indicadores")}
             >
               Indicadores
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('unidades')}
+              onClick={() => setTela("unidades")}
             >
               Unidades
             </button>
 
-            <button 
+            <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela('equipamentos')}
+              onClick={() => setTela("equipamentos")}
             >
               Equipamentos
             </button>
-
           </div>
         )}
       </div>
+      <h6>Indicadores</h6>
+      {indicadores.map((item) => (
+        <button
+          key={item.Id}
+          className="btn btn-outline-light text-start mb-2"
+          onClick={() => selecionarIndicador(item)}
+        >
+          {item.Nome}
+        </button>
+      ))}
     </aside>
-  )
+  );
 }
 
-export default MenuLateral
+export default MenuLateral;

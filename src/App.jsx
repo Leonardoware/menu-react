@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect,useState } from 'react'
 import Header from './components/Header'
 import MenuLateral from './components/MenuLateral'
 import Conteudo from './components/Conteudo'
@@ -11,14 +11,34 @@ import Indicadores from './components/cadastros/Indicadores'
 import Medicao from './components/cadastros/Medicao'
 import Funcionarios from './components/cadastros/Funcionarios'
 import './App.css'
+import { indicadorService } from './services/indicadorService'
+import VisualizarIndicador from './components/VisualizarIndicador'
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(true)
   const [tela, setTela] = useState('início')
+  const [indicadores, setIndicadores] = useState([])
+  const [indicadorSelecionado, setIndicadorSelecionado] = useState(null)
 
   function alternarMenu() {
     setMenuAberto(!menuAberto)
   }
+
+  async function atualizarMenu() {
+      const dados = await indicadorService.listar();
+
+      setIndicadores(Array.isArray(dados) ? dados : []);
+  }
+
+  useEffect(() => {
+      atualizarMenu().catch(console.error);
+  }, []);
+
+  function selecionarIndicador(item) {
+      setIndicadorSelecionado(item);
+      setTela('visualizarIndicador');
+  }
+
 
   return (
     <>
@@ -28,6 +48,8 @@ function App() {
         <MenuLateral
           aberto={menuAberto}
           setTela={setTela}
+          indicadores={indicadores}
+          selecionarIndicador={selecionarIndicador}
         />
 
         <main className="area-conteudo">
@@ -35,6 +57,7 @@ function App() {
             <button
               className="btn btn-primary"
               onClick={alternarMenu}
+
             >
               ☰ Menu
             </button>
@@ -46,9 +69,21 @@ function App() {
           {tela === 'equipamentos' && <Equipamentos />}
           {tela === 'unidadesMedidas' && <UnidadesMedidas />}
           {tela === 'tipoInformacao' && <TipoInformacao />}
-          {tela === 'indicadores' && <Indicadores />}
+          
           {tela === 'medicao' && <Medicao />}
           {tela === 'funcionarios' && <Funcionarios />}
+          
+          {tela === 'indicadores' && (
+              <Indicadores
+                  atualizarMenu={atualizarMenu}
+              />
+          )}
+
+          {tela === 'visualizarIndicador' && (
+              <VisualizarIndicador
+                  indicador={indicadorSelecionado}
+              />
+          )}
         </main>
       </div>
     </>
