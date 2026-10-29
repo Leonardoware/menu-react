@@ -32,13 +32,7 @@ function MenuLateral({ aberto, setTela, indicadores, selecionarIndicador }) {
 
         {cadastroAberto && (
           <div className="ms-3 d-grid gap-2">
-            <button
-              className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela("medicao")}
-            >
-              Medição
-            </button>
-
+            
             <button
               className="btn btn-sm btn-dark text-start"
               onClick={() => setTela("funcionarios")}
@@ -48,45 +42,17 @@ function MenuLateral({ aberto, setTela, indicadores, selecionarIndicador }) {
 
             <button
               className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela("safras")}
-            >
-              Safras
-            </button>
-
-            <button
-              className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela("unidadesMedidas")}
-            >
-              Unidades Medidas
-            </button>
-
-            <button
-              className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela("tipoInformacao")}
-            >
-              Tipo de Informação
-            </button>
-
-            <button
-              className="btn btn-sm btn-dark text-start"
               onClick={() => setTela("indicadores")}
             >
               Indicadores
             </button>
 
-            <button
-              className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela("unidades")}
-            >
-              Unidades
-            </button>
-
-            <button
-              className="btn btn-sm btn-dark text-start"
-              onClick={() => setTela("equipamentos")}
-            >
-              Equipamentos
-            </button>
+            <button onClick={() => setTela('safras')}>Safras</button>
+            <button onClick={() => setTela('unidades')}>Unidades</button>
+            <button onClick={() => setTela('unidadesMedida')}>Unidades de medida</button>
+            <button onClick={() => setTela('equipamentos')}>Equipamentos</button>
+            <button onClick={() => setTela('tiposInformacao')}>Tipos de informação</button>
+            <button onClick={() => setTela('medicoes')}>Medições</button>
           </div>
         )}
       </div>

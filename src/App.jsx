@@ -13,6 +13,7 @@ import Funcionarios from './components/cadastros/Funcionarios'
 import './App.css'
 import { indicadorService } from './services/indicadorService'
 import VisualizarIndicador from './components/VisualizarIndicador'
+import CadastroApi from './components/CadastroApi'
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(true)
@@ -83,7 +84,16 @@ function App() {
               <VisualizarIndicador
                   indicador={indicadorSelecionado}
               />
+
+          
           )}
+
+          {tela === 'safras' && <CadastroApi recurso="safras" />}
+          {tela === 'unidades' && <CadastroApi recurso="unidades" />}
+          {tela === 'unidadesMedida' && <CadastroApi recurso="unidadesMedida" />}
+          {tela === 'equipamentos' && <CadastroApi recurso="equipamentos" />}
+          {tela === 'tiposInformacao' && <CadastroApi recurso="tiposInformacao" />}
+          {tela === 'medicoes' && <CadastroApi recurso="medicoes" />}
         </main>
       </div>
     </>
